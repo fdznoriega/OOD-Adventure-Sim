@@ -3,7 +3,7 @@
 
 
 public interface Quest_State {
-  public String getState();    // what part of the quest are we on?
-  public Quest_State changeState(); // moving on!
-  // public List<String> getHeroes();
+  public String getName();
+  public Quest_State getState();
+  public Quest_State changeState();
 }

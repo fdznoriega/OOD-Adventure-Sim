@@ -6,13 +6,18 @@ public class Hero {
   private static Hero leader;
 
   public static void assignLeader(Hero h) {
+    // ensure the hero has a weapon
+    if(h.getWeapon() == null) {
+      System.out.println("Caution: The leader must have a weapon");
+      return;
+    }
+    // hero has weapon, check for null to make them leader
     if(leader == null) {
       leader = h;
     }
     else {
       // exception handle in the future?
       System.out.println("Caution: There's already a leader!");
-      return;
     }
   }
 

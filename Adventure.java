@@ -6,7 +6,7 @@ import java.util.List;
 public class Adventure {
 
   public void testDesignPatterns() {
-    System.out.println("Welcome to the adventure!");
+    System.out.println(" ******** Welcome to the Adventure Design Pattern Tester! ********");
     // ****************** Blacksmith (Factory & Singleton) ******************
     System.out.println(" **** Blacksmith (Factory & Singleton) **** ");
     System.out.println("First, we will make a blacksmith (factory/singleton) to provide weapons for our heroes");
@@ -19,20 +19,22 @@ public class Adventure {
     System.out.println("Here's blacksmith 1: " + blacksmith);
     System.out.println("Here's blacksmith 2: " + blacksmith2);
     System.out.println("Are they equal? " + blacksmith.equals(blacksmith2));
+    System.out.println("It's a singleton!");
+    System.out.println("Let's test the factory portion of this pattern");
+    Weapon w = blacksmith.create(WeaponType.SWORD);
+    System.out.println("Here's a sword: " + w);
     System.out.println("Great, let's make our heroes!");
     // ****************** Heroes & Leader (Singleton) ******************
     System.out.println(" **** Heroes and Leader (Singleton) **** ");
-    System.out.println("Hero 1 is up");
+    System.out.println("Creating 4 heroes. 3 with weapons, 1 without");
     // Here is the blacksmith's factory pattern
     Hero h1 = new Hero("Andres", blacksmith.create(WeaponType.SWORD));
-    System.out.println("Hero 2 is up");
     Hero h2 = new Hero("Carolina");
-    System.out.println("Hero 3 is up");
     Hero h3 = new Hero("Valeria", blacksmith.create(WeaponType.STAFF));
-    System.out.println("Hero 4 is up");
     Hero h4 = new Hero("Alfred", blacksmith.create(WeaponType.AXE));
     System.out.println(h1 + "\n" + h2 + "\n" + h3 + "\n" + h4);
     // Here is the hero's singleton pattern (leader)
+    System.out.println("Let's test the hero singleton (leader)");
     System.out.println("Making Hero 1 the leader");
     Hero.assignLeader(h1);
     System.out.println("Making Hero 2 the leader");
@@ -56,16 +58,18 @@ public class Adventure {
     Quest_State qs = new Quest_Town();
     Quest quest = new Quest(qs);
     quest.recruit(party);
+    System.out.println("Out of curiosity, what's our party's total damage output?");
+    System.out.println(quest.getTotalHeroDamage());
     System.out.println("Here is information on the current quest: " + "\n" + quest);
 
 
-    // // start simulation
+    // start simulation
   }
 
   public static void main(String[] args) {
     Adventure a = new Adventure();
     a.testDesignPatterns();
-    a.start();
+    // a.start();
 
 
   }

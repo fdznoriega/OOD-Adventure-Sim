@@ -55,8 +55,6 @@ public class Blacksmith {
     }
   }
 
-
-
   // Test singleton & factory features
   public static void main(String[] args) {
 
