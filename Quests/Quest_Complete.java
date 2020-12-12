@@ -1,4 +1,5 @@
 
+package Quests;
 // state pattern
 
 public class Quest_Complete implements Quest_State {

@@ -1,3 +1,6 @@
+
+package Quests;
+
 // state pattern
 // TOWN -> OCEAN -> DUNGEON -> COMPLETE
 

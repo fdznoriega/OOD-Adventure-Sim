@@ -1,7 +1,13 @@
 
+// java imports
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
+// adventure imports
+import People.*;
+import Quests.*;
+import Weapons.*;
+
 
 public class Adventure {
 

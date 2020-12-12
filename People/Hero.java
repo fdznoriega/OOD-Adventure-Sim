@@ -1,4 +1,9 @@
 
+package People;
+
+import Weapons.Weapon;
+import Weapons.WeaponType;
+
 public class Hero {
 
   // ******** LEADER SINGLETON **********

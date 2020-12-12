@@ -1,4 +1,6 @@
 
+package Weapons;
+
 // a 'weapon' is never created; it's a concept
 // we create swords, axes, and staves.
 
