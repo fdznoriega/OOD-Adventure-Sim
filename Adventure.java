@@ -97,7 +97,5 @@ public class Adventure {
   public static void main(String[] args) {
     Adventure a = new Adventure();
     a.start();
-
-
   }
 }
