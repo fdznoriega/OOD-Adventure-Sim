@@ -33,7 +33,7 @@ public class Quest_Battle2 implements Quest_State {
   public String getScenario() {
     return
       "> You explore deeper into the cavern and reach the promised treasure! \n" +
-      "> Alas, a mighty dragon rests on the gold. Once more: fight or flight?";
+      "> Alas, a mighty dragon rests on the gold.";
   }
 
 }
