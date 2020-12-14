@@ -3,24 +3,26 @@ package Quests;
 
 // state pattern
 
-public class Quest_Dungeon implements Quest_State {
+public class Quest_Battle2 implements Quest_State {
 
-  private Boolean solved = true;
+  private Boolean solved = false;
 
   public String getName() {
-    return "DUNGEON";
+    return "Battle2";
   }
   public Quest_State getState() {
     return this;
   }
   public Quest_State changeState() {
-    return new Quest_Battle2();
+    return new Quest_Complete();
   }
+
   public Boolean isBlacksmithAvailable() {
     return false;
   }
+
   public String getSolution() {
-    return "TRAVEL";
+    return "FIGHT";
   }
   public Boolean isSolved() {
     return solved;
@@ -30,8 +32,8 @@ public class Quest_Dungeon implements Quest_State {
   }
   public String getScenario() {
     return
-      "> You avoid the sea-creature and continue your journey. \n" +
-      "> Along the coast, you spot a not-so-natural cave. Your party \n" +
-      "> discovers torches scattered nearby. Here is the dungeon of legend.";
+      "> You explore deeper into the cavern and reach the promised treasure! \n" +
+      "> Alas, a mighty dragon rests on the gold. Once more: fight or flight?";
   }
+
 }

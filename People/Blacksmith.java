@@ -32,6 +32,14 @@ public class Blacksmith {
     name = null;
   }
 
+  public static Blacksmith getInstance() {
+    return unique;
+  }
+
+  public String getName() {
+    return name;
+  }
+
   @Override
   public String toString() {
     if(name == null && unique == null) {
@@ -57,6 +65,6 @@ public class Blacksmith {
     else {
       return null;
     }
-  }  
+  }
 
 }

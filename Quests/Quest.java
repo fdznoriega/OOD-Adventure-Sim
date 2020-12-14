@@ -50,6 +50,30 @@ public class Quest {
     return dmg;
   }
 
+  public Boolean isBlacksmithAvailable() {
+    return state.isBlacksmithAvailable();
+  }
+
+  public String getSolution() {
+    return state.getSolution();
+  }
+
+  public void setSolved(Boolean b) {
+    state.setSolved(b);
+  }
+
+  public Boolean isSolved() {
+    return state.isSolved();
+  }
+
+  public String getScenario() {
+    return state.getScenario();
+  }
+
+  public String getName() {
+    return state.getName();
+  }
+
   // THIS IS THE ONLY WAY OF ADDING HEROES TO A QUEST
   // THEREFORE WE CAN RESTRICT BY: LEADER, WEAPON
   public void recruit(List<Hero> heroList) {

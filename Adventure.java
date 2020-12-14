@@ -3,7 +3,7 @@
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
-// adventure imports
+// adventure simulation imports
 import People.*;
 import Quests.*;
 import Weapons.*;
@@ -61,13 +61,32 @@ public class Adventure {
     System.out.println(party);
     System.out.println("Looks like our party is ready to go on a quest!");
     System.out.println(" **** Quest (State) **** ");
-    Quest_State qs = new Quest_Town();
-    Quest quest = new Quest(qs);
-    quest.recruit(party);
+    Quest_State q_state = new Quest_Town();
+    Quest q = new Quest(q_state);
+    q.recruit(party);
     System.out.println("Out of curiosity, what's our party's total damage output?");
-    System.out.println(quest.getTotalHeroDamage());
-    System.out.println("Here is information on the current quest: " + "\n" + quest);
-
+    System.out.println(q.getTotalHeroDamage());
+    System.out.println("Here is information on the current quest: " + "\n" + q);
+    System.out.println("Let's iterate through the rest of the quest");
+    while(true) {
+      // check the next state to see if we're at the last one or not
+      if(q_state.changeState() != null) {
+        Quest_State prev_state = q_state;
+        q_state = q_state.changeState();
+        q = new Quest(q_state, q.getHeroes());
+        // if previous state and current are the same, you failed.
+        if(q.getState() == prev_state) {
+          q_state = prev_state;
+          System.out.println("Failed the quest");
+          break;
+        }
+      }
+      else {
+        System.out.println("You've completed your quest!");
+        System.out.println("Congradulations: " + q.getHeroes());
+        break;
+      }
+    }
 
     // start simulation
   }

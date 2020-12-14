@@ -1,5 +1,6 @@
 
 // test quest (state pattern)
+// test hero and leader (singleton)
 
 package Tests;
 
