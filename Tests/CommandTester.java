@@ -1,5 +1,4 @@
 
-
 // test quest (state pattern)
 // test hero and leader (singleton)
 
@@ -17,9 +16,11 @@ import java.util.ArrayList;
 public class CommandTester {
   public static void main(String[] args) {
 
+    String playerName = "Andres";
+
     Blacksmith blacksmith = Blacksmith.hire("Daedalus");
 
-    Hero h1 = new Hero("Player", blacksmith.create(WeaponType.SWORD));
+    Hero h1 = new Hero(playerName, blacksmith.create(WeaponType.SWORD));
     Hero h2 = new Hero("Carolina", blacksmith.create(WeaponType.AXE));
     Hero h3 = new Hero("Valeria", blacksmith.create(WeaponType.STAFF));
     Hero h4 = new Hero("Alfred", blacksmith.create(WeaponType.AXE));
@@ -32,7 +33,7 @@ public class CommandTester {
     Quest q = new Quest(q_state);
     q.recruit(party);
 
-    UI ui = new CLI(q);
+    UI ui = new CLI(q, playerName);
 
     System.out.println("Start simulation in CommandTester");
 

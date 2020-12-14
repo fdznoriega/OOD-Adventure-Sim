@@ -16,14 +16,16 @@ public class CLI implements UI {
   private Boolean gameOver;
   private String playerInput;
   private Quest quest;
+  private String playerName;
 
   // the command line interface always uses the scanner
-  public CLI(Quest q) {
+  public CLI(Quest q, String name) {
     scanner = new Scanner(System.in);
     quitGame = false;
     gameOver = false;
     playerInput = "";
     quest = q;
+    playerName = name;
   }
 
   // this is for any input
@@ -32,7 +34,7 @@ public class CLI implements UI {
     Command c;
     if(scanner.hasNext()) {
       // compare player input to command types
-      playerInput = scanner.next().replaceAll("\\s", "").toUpperCase();
+      playerInput = scanner.nextLine().replaceAll("\\s", "").toUpperCase();
       // CHECK FOR COMMANDS
       // if else chain to check for commands
       if(playerInput.equals("EXIT")) {
@@ -48,22 +50,22 @@ public class CLI implements UI {
         c = new BlacksmithCommand(this, quest);
         c.execute();
         // check blacksmith available
-        if(!quest.isBlacksmithAvailable()) {
-          return;
+        if(quest.isBlacksmithAvailable()) {
+          // player has been prompted to equip
+          playerInput = scanner.nextLine().replaceAll("\\s", "").toUpperCase();
+          if(playerInput.equals("EQUIP")) {
+            // display equip options
+            this.showEquipmentOptions();
+            // fetch last player input
+            playerInput = scanner.nextLine().replaceAll("\\s", "").toUpperCase();
+            c = new EquipCommand(this, quest, playerName, playerInput);
+            c.execute();
+          }
+          else {
+            return;
+          }
         }
-        // player has been prompted to equip
-        playerInput = scanner.next().replaceAll("\\s", "").toUpperCase();
-        if(playerInput.equals("EQUIP")) {
-          // display equip options
-          this.showEquipmentOptions();
-          // fetch last player input
-          playerInput = scanner.next().replaceAll("\\s", "").toUpperCase();
-          c = new EquipCommand(this, quest, "Player", playerInput);
-          c.execute();
-        }
-        else {
-          return;
-        }
+
       }
       else if(playerInput.equals("HELP")) {
         c = new HelpCommand(this);
@@ -76,6 +78,10 @@ public class CLI implements UI {
           c.execute();  // takes us to update quest
         }
       }
+      else if(playerInput.equals("PARTY")) {
+        c = new PartyCommand(this);
+        c.execute();
+      }
       else if(playerInput.equals("FIGHT")) {
         if(quest.getSolution().equals("FIGHT")) {
           quest.setSolved(true);
@@ -86,7 +92,7 @@ public class CLI implements UI {
           gameOver = true;
         }
         else {
-
+          // ignore this input
         }
       }
       else if(playerInput.equals("FLIGHT")) {
@@ -99,7 +105,7 @@ public class CLI implements UI {
           gameOver = true;
         }
         else {
-
+          // ignore this input
         }
       }
 
@@ -113,7 +119,6 @@ public class CLI implements UI {
 
     }
   }
-
 
   public void showQuest(Quest q) {
     System.out.println("> CURRENT QUEST: " + q.getName());
@@ -133,9 +138,10 @@ public class CLI implements UI {
       quest = new Quest(q_state, quest.getHeroes());
       // show new quest scenario
       this.showScenario();
-    }
-    else {
-      return;
+      // check if there are no more scenarios
+      if(q_state.changeState() == null) {
+        gameOver = true;
+      }
     }
   }
 
@@ -159,7 +165,12 @@ public class CLI implements UI {
 
   public void showEquipSuccessful() {
     System.out.println("> Enjoy your new equipment!");
-    System.out.println("> " + quest.getHeroes());
+    // first adventurer is always player/leader
+    System.out.println("> " + quest.getHeroes().get(0));
+  }
+
+  public void showParty() {
+    System.out.println("> PARTY: " + quest.getHeroes());
   }
 
   public void showEquipUnsuccessful() {
@@ -178,7 +189,7 @@ public class CLI implements UI {
 
   public void showAllPossibleCommands() {
     System.out.println("> COMMANDS: ");
-    System.out.println("> HELP | QUEST | BLACKSMITH | TRAVEL | EXIT");
+    System.out.println("> HELP | QUEST | PARTY | BLACKSMITH | TRAVEL | EXIT");
   }
 
   // more of a client command

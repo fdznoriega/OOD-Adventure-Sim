@@ -33,7 +33,7 @@ public class Quest_Town implements Quest_State {
   }
   public String getScenario() {
     return
-      "> Player, welcome to the humble town of OOD. Your objective is to make it \n" +
+      "> Welcome to the humble town of OOD. Your objective is to make it \n" +
       "> to the treasure hidden at a nearby dungeon. I recommend visiting \n" +
       "> the blacksmith first. Type 'help' for more options.";
 

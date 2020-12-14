@@ -30,7 +30,7 @@ public class Quest_Complete implements Quest_State {
   }
   public String getScenario() {
     return
-      "> Congradulations, Hero! You've completed your quest!";
+      "> Congradulations, you've defeated the dragon!\nYour party is rich forevermore.";
   }
 
 }

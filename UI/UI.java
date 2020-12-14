@@ -18,6 +18,7 @@ public interface UI {
   public void showAllPossibleCommands();
   public void showFightOrFlight();
   public void showScenario();
+  public void showParty();
   // public void showEquip();
   // public void showTravel();
   // public void showFight();
